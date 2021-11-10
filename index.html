@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <link rel='stylesheet' type="text/css" href="todolist.css">
+    
+    <div id="myDIV" class="header">
+        <h2 style="margin:5px">My Note123</h2>
+        <textarea type="text" id="myInput" placeholder="notes..."></textarea>
+        <span onclick="render()" class="addBtn">Render</span>
+    </div>
+
+    <div id='svgDiv'>
+    </div>
+    <script src="dist/note123_svg.js"></script>
+    <script src="dist/note123_music.js"></script>
+    <script src="dist/note123_renderer.js"></script>
+</body>
+</html>

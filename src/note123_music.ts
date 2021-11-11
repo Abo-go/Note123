@@ -68,7 +68,7 @@ class Note extends Renderable {
         let depth = 1;
         if(this.parent != null)
         {
-            depth
+            depth += this.parent.depth;
         }
         return depth;
     }
@@ -80,7 +80,8 @@ class Note extends Renderable {
 
     override render(){
         if(this.note == NoteType.Beat){
-            
+            // 绘制
+            createLine(this.x, this.y + this.depth * gUnderLineSpace, this.minWidth, 0);
             for(let child of this.children){
                 child.render();
             }
@@ -172,6 +173,8 @@ export class Music{
             }
         }
 
+        
+        // 乐谱渲染
         let startX = gFontWidth;
         let startY = gFontSize;
         for(let note of this.notes){

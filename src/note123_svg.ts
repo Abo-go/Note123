@@ -3,6 +3,7 @@ module Note123
 
 export const gFontSize = 30;
 export const gFontWidth = 20;
+export const gUnderLineSpace = 3;
 
 document.getElementById('svgDiv');
 const svg = createSvgNode(document.getElementById('svgDiv'), 'svg');
@@ -17,6 +18,7 @@ rect.setAttribute('fill', 'pink');
 export const g1 = createSvgNode(svg, 'g');
 g1.setAttribute('font-size', gFontSize);
 g1.setAttribute('text-anchor', 'start');
+g1.setAttribute('stroke', 'black');
 
 export function createSvgNode(parent, name)
 {
@@ -41,15 +43,16 @@ export function createBarLine(x, y)
     node.setAttribute('y1', y);
     node.setAttribute('x2', x);
     node.setAttribute('y2', y + gFontSize);
+
 }
 
-export function createLine(startX: number, startY: number, endX: number, endY: number)
+export function createLine(startX: number, startY: number, moveX: number, moveY: number)
 {
     var node = createSvgNode(g1, 'line');
     node.setAttribute('x1', startX);
     node.setAttribute('y1', startY);
-    node.setAttribute('x2', endX);
-    node.setAttribute('y2', endY);
+    node.setAttribute('x2', startX + moveX);
+    node.setAttribute('y2', startY + moveY);
 }
 
 }

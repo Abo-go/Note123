@@ -12,6 +12,52 @@ enum NoteType {
     Dot,
 }
 
+// 唱名
+enum Syllable {
+    Do = 1,
+    Re,
+    Mi,
+    Fa,
+    Sol,
+    La,
+    Ti,
+}
+
+// 音名
+enum NoteName {
+    C = 1,
+    D,
+    E,
+    F,
+    G,
+    A,
+    B
+}
+
+enum Information {
+    K,  //Key
+    T,  //Tempo
+}
+
+enum BeatType {
+    Whole = 1,
+    Half = 2,
+    Quarter = 4,
+    Eighth = 8,
+}
+
+class Tempo {
+    speed: number;
+    beats: number;
+    beatType: BeatType;
+}
+
+class SimpleNote {
+    readonly note: number;
+    readonly chromatic: ChromaType;
+    readonly octave:number;
+}
+
 abstract class Renderable {
     x : number;
     y : number;
@@ -23,14 +69,14 @@ abstract class Renderable {
 }
 
 class Note extends Renderable {
-    readonly note: NoteType;
+    readonly note: number;
     readonly chromatic: ChromaType;
     readonly octave:number;
 
     parent: Note = null;
     children: Note[] = [];
 
-    constructor(parent: Note, note: NoteType, octave: number = 0, chroma: ChromaType = ChromaType.Natural){
+    constructor(parent: Note, note: number, octave: number = 0, chroma: ChromaType = ChromaType.Natural){
         super();
         this.parent = parent;
         this.note = note;
@@ -118,11 +164,36 @@ class Note extends Renderable {
 
 export class Music{
     notes: Note[] = [];
+    key: SimpleNote;
 
     render(txt: string){
         console.info("render start");
+
+        console.info(NoteName["A"], NoteName[1]);
+
         g1.textContent = '';
         let parentNote: Note = null;
+
+        let lines = txt.split('\n');
+
+        for(let line of lines)
+        {
+            if(line.charAt(1) == ':')
+            {
+                let info = Information[line.charAt(0)];
+                switch(info)
+                {
+                    case Information.K:
+
+                        break;
+                    case Information.T:
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         for(let i = 0; i < txt.length; i++){
             let s = txt.charAt(i);
